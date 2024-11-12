@@ -1,3 +1,40 @@
 {
-  "cities": []
+  "cities": [
+    {
+      "id": "f22f",
+      "cityName": "Cabanes de Esgueva",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2024-11-11T20:35:31.517Z",
+      "notes": "",
+      "position": {
+        "lat": "41.83682786072714",
+        "lng": "-3.8122558593750004"
+      }
+    },
+    {
+      "id": "6b63",
+      "cityName": "Faramontanos de Tabara",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2024-11-11T20:35:34.580Z",
+      "notes": "",
+      "position": {
+        "lat": "41.86137915587359",
+        "lng": "-5.844726562500001"
+      }
+    },
+    {
+      "id": "675d",
+      "cityName": "Albero Bajo",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2024-11-11T20:40:57.039Z",
+      "notes": "",
+      "position": {
+        "lat": "42.00848901572399",
+        "lng": "-0.38452148437500006"
+      }
+    }
+  ]
 }

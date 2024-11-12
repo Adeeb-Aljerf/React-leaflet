@@ -1,7 +1,6 @@
-import { act, createContext, useContext, useEffect, useReducer } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
 
 const CityContext = createContext();
-// const BASE_URL = "http://localhost:9000";
 const BASE_URL = "https://adeeb-aljerf.github.io/City-api/cities.json";
 
 function reducer(state, action) {
@@ -36,10 +35,6 @@ function reducer(state, action) {
 }
 
 function CityProvider({ children }) {
-  // const [cities, setCities] = useState([]);
-  // const [currentCity, setCurrentCity] = useState({});
-  // const [isLoading, setIsLoading] = useState(false);
-
   const initalState = {
     cities: [],
     isLoading: false,
@@ -51,16 +46,29 @@ function CityProvider({ children }) {
     initalState
   );
 
+  useEffect(() => {
+    const loadInitialData = async () => {
+      dispatch({ type: "loading" });
+      // Only fetch if localStorage is empty
+      if (!localStorage.getItem("cities")) {
+        const response = await fetch(BASE_URL);
+        const data = await response.json();
+        localStorage.setItem("cities", JSON.stringify(data));
+      }
+      // Load data from localStorage
+      const data = JSON.parse(localStorage.getItem("cities"));
+      dispatch({ type: "cities/loaded", payload: data });
+    };
+
+    loadInitialData();
+  }, []); // This will run only once when component mounts
+
   useEffect(function () {
     async function fetchCities() {
       try {
         dispatch({ type: "loading" });
-
-        const res = await fetch(`${BASE_URL}/cities`);
-        // const res = await fetch(`${BASE_URL}`);
-        const data = await res.json();
-
-        if (data) dispatch({ type: "cities/loaded", payload: data });
+        const data = JSON.parse(localStorage.getItem("cities") || "[]");
+        dispatch({ type: "cities/loaded", payload: data });
       } catch {
         dispatch({
           type: "rejected",
@@ -74,11 +82,8 @@ function CityProvider({ children }) {
   async function getCity(id) {
     try {
       dispatch({ type: "loading" });
-
-      const res = await fetch(`${BASE_URL}/cities/${id}`);
-      const data = await res.json();
-
-      dispatch({ type: "city/selected", payload: data });
+      const city = cities.find((city) => city.id === id);
+      dispatch({ type: "city/selected", payload: city });
     } catch {
       dispatch({
         type: "rejected",
@@ -86,26 +91,19 @@ function CityProvider({ children }) {
       });
     }
   }
-  async function createCity(currentCity) {
+
+  async function createCity(newCity) {
     try {
       dispatch({ type: "loading" });
-      const res = await fetch(`${BASE_URL}/cities`, {
-        method: "POST",
-        body: JSON.stringify(currentCity),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const data = await res.json();
-
-      //? we are adding the new city to the cities array
-      // setCities((cities) => [...cities, data]);
-
-      dispatch({ type: "city/created", payload: data });
+      const currentCities = JSON.parse(localStorage.getItem("cities") || "[]");
+      const cityWithId = { ...newCity, id: crypto.randomUUID() };
+      const updatedCities = [...currentCities, cityWithId];
+      localStorage.setItem("cities", JSON.stringify(updatedCities));
+      dispatch({ type: "city/created", payload: cityWithId });
     } catch {
       dispatch({
         type: "rejected",
-        payload: "There was an error loading city",
+        payload: "There was an error creating city",
       });
     }
   }
@@ -113,18 +111,14 @@ function CityProvider({ children }) {
   async function deleteCity(id) {
     try {
       dispatch({ type: "loading" });
-      await fetch(`${BASE_URL}/cities/${id}`, {
-        method: "DELETE",
-      });
-
-      //? Update the state after successful deletion
-      // setCities((cities) => cities.filter((city) => city.id !== id));
-
+      const currentCities = JSON.parse(localStorage.getItem("cities") || "[]");
+      const updatedCities = currentCities.filter((city) => city.id !== id);
+      localStorage.setItem("cities", JSON.stringify(updatedCities));
       dispatch({ type: "city/deleted", payload: id });
     } catch {
       dispatch({
         type: "rejected",
-        payload: "There was an error loading city",
+        payload: "There was an error deleting city",
       });
     }
   }
