@@ -62,7 +62,7 @@ export default function Map() {
       <MapContainer
         className={styles.map}
         center={mapPosition}
-        zoom={4}
+        zoom={7}
         minZoom={3}
         scrollWheelZoom={true}
         maxBounds={[

@@ -4,8 +4,22 @@
   list-style: none;
   overflow-y: scroll;
   overflow-x: hidden;
+  -webkit-overflow-scrolling: touch; /* Enables smooth scrolling on iOS */
+  overscroll-behavior: contain; /* Prevents page refresh on pull-to-refresh */
+
+  /* Ensure content is actually scrollable on touch devices */
+  -webkit-tap-highlight-color: transparent;
+  touch-action: pan-y; /* Enables vertical touch scrolling */
 
   display: flex;
   flex-direction: column;
   gap: 1.4rem;
+}
+.cityList::-webkit-scrollbar {
+  width: 0.6rem;
+}
+
+.cityList::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 0.3rem;
 }

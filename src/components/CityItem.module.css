@@ -67,8 +67,10 @@
   .cityItem:visited {
     display: flex;
     flex-direction: column;
+    padding: 1rem 0.1rem;
     align-items: center;
     gap: 1rem;
+    position: relative;
   }
 
   .name {
@@ -77,7 +79,9 @@
   }
 
   .deleteBtn {
-    order: -1;
+    position: absolute;
+    top: 0rem;
+    left: -1rem;
   }
 
   .date {
