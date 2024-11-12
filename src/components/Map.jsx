@@ -46,12 +46,32 @@ export default function Map() {
     // to change in any third lib you have to make a new component and use it on the 3d lib commo ( map component )
     <div className={styles.mapContainer}>
       {!getLocationPosition && (
-        <>
+        <div>
           <Button type={"position"} onClick={getPosition}>
-            {isLoadingPosition ? "Loading..." : "go to your position"}
+            {isLoadingPosition ? "Loading..." : "Go to your position"}
           </Button>
-          {error && <div className={styles.error}>{error}</div>}
-        </>
+
+          {error && (
+            <div
+              style={{
+                position: "fixed",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                backgroundColor: "white",
+                padding: "1.2rem 2.4rem",
+                borderRadius: "8px",
+                boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)",
+                zIndex: 1000,
+                textAlign: "center",
+                border: "2px solid #ff5252",
+                fontSize: "16px",
+              }}
+            >
+              {error}
+            </div>
+          )}
+        </div>
       )}
       <MapContainer
         className={styles.map}
