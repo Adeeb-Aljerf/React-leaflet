@@ -62,17 +62,17 @@
 }
 @media screen and (max-width: 31.25em) {
   .form {
-    padding: 1rem 1.5rem;
+    padding: 0.8rem;
     gap: 2rem;
   }
   .row input,
   .row textarea,
   .row :global(.react-datepicker-wrapper) {
-    font-size: 1.1rem;
+    font-size: 0.8rem;
     padding: 0.4rem;
   }
 
   .row label {
-    font-size: 1.2rem;
+    font-size: 0.9rem;
   }
 }

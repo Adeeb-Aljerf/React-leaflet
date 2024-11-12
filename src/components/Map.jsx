@@ -51,7 +51,7 @@ export default function Map() {
             {isLoadingPosition ? "Loading..." : "Go to your position"}
           </Button>
 
-          {error && <div>{error}</div>}
+          {error && alert(error)}
         </div>
       )}
       <MapContainer

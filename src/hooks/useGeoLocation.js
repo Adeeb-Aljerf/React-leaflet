@@ -36,7 +36,7 @@ export function useGeolocation(defaultValue = null) {
             "Location request timed out. Please check if GPS is enabled"
           );
         } else {
-          setError(alert(error.message));
+          setError(error.message);
         }
         setIsLoading(false);
       },
