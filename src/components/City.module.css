@@ -45,3 +45,25 @@
   font-size: 1.6rem;
   color: var(--color-brand--1);
 }
+
+@media (max-width: 50em) {
+  .city {
+    padding: 1rem;
+  }
+  .city h3 {
+    font-size: 1.2rem;
+  }
+
+  .city h3 span {
+    font-size: 1.3rem;
+  }
+
+  .city p {
+    font-size: 1.3rem;
+  }
+
+  .city a:link,
+  .city a:visited {
+    font-size: 1.3rem;
+  }
+}

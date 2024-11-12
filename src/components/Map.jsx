@@ -51,26 +51,7 @@ export default function Map() {
             {isLoadingPosition ? "Loading..." : "Go to your position"}
           </Button>
 
-          {error && (
-            <div
-              style={{
-                position: "fixed",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                backgroundColor: "white",
-                padding: "1.2rem 2.4rem",
-                borderRadius: "8px",
-                boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)",
-                zIndex: 1000,
-                textAlign: "center",
-                border: "2px solid #ff5252",
-                fontSize: "16px",
-              }}
-            >
-              {error}
-            </div>
-          )}
+          {error && <div>{error}</div>}
         </div>
       )}
       <MapContainer
