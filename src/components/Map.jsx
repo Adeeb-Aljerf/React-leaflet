@@ -20,6 +20,7 @@ export default function Map() {
     isLoading: isLoadingPosition,
     position: getLocationPosition,
     getPosition,
+    error,
   } = useGeolocation();
 
   const [mapLat, mapLng] = useUrlPosition();
@@ -45,9 +46,12 @@ export default function Map() {
     // to change in any third lib you have to make a new component and use it on the 3d lib commo ( map component )
     <div className={styles.mapContainer}>
       {!getLocationPosition && (
-        <Button type={"position"} onClick={getPosition}>
-          {isLoadingPosition ? "Loading..." : "go to your position"}
-        </Button>
+        <>
+          <Button type={"position"} onClick={getPosition}>
+            {isLoadingPosition ? "Loading..." : "go to your position"}
+          </Button>
+          {error && <div className={styles.error}>{error}</div>}
+        </>
       )}
       <MapContainer
         className={styles.map}

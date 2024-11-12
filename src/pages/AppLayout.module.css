@@ -5,3 +5,9 @@
   display: flex;
   position: relative;
 }
+
+@media (max-width: 60.625em) {
+  .app {
+    padding: 0;
+  }
+}
