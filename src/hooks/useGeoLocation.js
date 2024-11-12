@@ -32,9 +32,7 @@ export function useGeolocation(defaultValue = null) {
         if (error.code === error.POSITION_UNAVAILABLE) {
           setError("Please enable GPS location services");
         } else if (error.code === error.TIMEOUT) {
-          setError(
-            "Location request timed out. Please check if GPS is enabled"
-          );
+          setError("Please check if GPS is enabled");
         } else {
           setError(error.message);
         }
