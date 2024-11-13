@@ -59,7 +59,7 @@ export default function Map() {
           <Button type={"position"} onClick={getPosition}>
             {isLoadingPosition ? "Getting location..." : "Go to your position"}
           </Button>
-          {error && <div className={styles.error}>{error}</div>}
+          {error && <div className={styles.error}>alert(error)</div>}
         </div>
       )}
       <MapContainer
