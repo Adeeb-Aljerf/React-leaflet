@@ -42,14 +42,14 @@ export default function Map() {
     [getLocationPosition]
   );
 
-  // useEffect(
-  //   function () {
-  //     if (error) {
-  //       alert(error);
-  //     }
-  //   },
-  //   [error]
-  // );
+  useEffect(
+    function () {
+      if (error) {
+        alert(error);
+      }
+    },
+    [error]
+  );
 
   return (
     // to change in any third lib you have to make a new component and use it on the 3d lib commo ( map component )
@@ -59,7 +59,7 @@ export default function Map() {
           <Button type={"position"} onClick={getPosition}>
             {isLoadingPosition ? "Getting location..." : "Go to your position"}
           </Button>
-          {error && <div className={styles.error}>{alert(error)}</div>}
+          {/* {error && <div className={styles.error}>{alert(error)}</div>} */}
         </div>
       )}
       <MapContainer
